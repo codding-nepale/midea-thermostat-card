@@ -53,6 +53,14 @@ export class MideaThermostatCardEditor extends LitElement {
     this._emit();
   }
 
+  _setDial(key, value) {
+    this._config = {
+      ...this._config,
+      dial: { ...(this._config.dial || {}), [key]: value },
+    };
+    this._emit();
+  }
+
   // ha-form emits the full merged data object.
   _valueChanged(ev) {
     ev.stopPropagation();
@@ -66,6 +74,19 @@ export class MideaThermostatCardEditor extends LitElement {
       { name: 'name', selector: { text: {} } },
       { name: 'icon', selector: { icon: {} } },
       { name: 'show_current_as_secondary', selector: { boolean: {} } },
+      {
+        type: 'expandable',
+        name: 'dial',
+        schema: [
+          {
+            name: 'step',
+            selector: {
+              number: { min: 0.1, max: 5, step: 0.1, mode: 'box' },
+            },
+          },
+          { name: 'draggable', selector: { boolean: {} } },
+        ],
+      },
       {
         type: 'expandable',
         name: 'features',
@@ -120,6 +141,17 @@ export class MideaThermostatCardEditor extends LitElement {
             .checked=${this._config.show_current_as_secondary !== false}
             @change=${(e) =>
               this._setValue('show_current_as_secondary', e.target.checked)}
+          />
+        </label>
+        <label>
+          ${localize(this.hass, 'editor.step')}
+          <input
+            id="step"
+            type="number"
+            min="0.1"
+            step="0.1"
+            .value=${String(this._config.dial?.step ?? 1)}
+            @input=${(e) => this._setDial('step', Number(e.target.value))}
           />
         </label>
       </div>

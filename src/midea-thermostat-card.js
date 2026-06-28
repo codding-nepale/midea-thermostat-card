@@ -8,7 +8,13 @@ import { sharedStyles } from './styles.js';
 import { normalizeConfig } from './core/config.js';
 import { detectFeatures } from './core/midea-detect.js';
 import { hvacColor } from './core/hvac-colors.js';
-import { formatEntityState, formatAttributeValue, humanize } from './core/format.js';
+import {
+  formatEntityState,
+  formatAttributeValue,
+  localizeAttrValue,
+  attrLabel,
+  humanize,
+} from './core/format.js';
 import { localize } from './localize/localize.js';
 import {
   setTemperature,
@@ -23,7 +29,7 @@ import {
 
 import './components/dial.js';
 import './components/mode-chips.js';
-import './components/toggle-chips.js';
+import './components/toggle-dropdown.js';
 import './components/collapsible-row.js';
 import './components/sensor-chips.js';
 import './editor.js';
@@ -214,7 +220,7 @@ export class MideaThermostatCard extends LitElement {
         currentLabel: formatAttributeValue(this.hass, this._climate, 'fan_mode'),
         options: (fan.modes || []).map((m) => ({
           value: `mode:${m}`,
-          label: humanize(m),
+          label: localizeAttrValue(this.hass, 'climate', 'fan_mode', m),
           selected: m === fan.current,
         })),
       };
@@ -242,7 +248,7 @@ export class MideaThermostatCard extends LitElement {
         currentLabel: formatAttributeValue(this.hass, this._climate, 'swing_mode'),
         options: (sw.modes || []).map((m) => ({
           value: `mode:${m}`,
-          label: humanize(m),
+          label: localizeAttrValue(this.hass, 'climate', 'swing_mode', m),
           selected: m === sw.current,
         })),
       };
@@ -251,7 +257,7 @@ export class MideaThermostatCard extends LitElement {
     for (const s of sw.switches || []) {
       options.push({
         value: `switch:${s.entityId}`,
-        label: humanize(s.key),
+        label: attrLabel(this.hass, s.key),
         selected: s.isOn,
       });
     }
@@ -259,7 +265,7 @@ export class MideaThermostatCard extends LitElement {
       for (const o of sel.options || []) {
         options.push({
           value: `select:${sel.entityId}:${o}`,
-          label: `${humanize(sel.key)}: ${humanize(o)}`,
+          label: `${attrLabel(this.hass, sel.key)}: ${humanize(o)}`,
           selected: o === sel.current,
         });
       }
@@ -282,7 +288,7 @@ export class MideaThermostatCard extends LitElement {
         currentLabel: formatAttributeValue(this.hass, this._climate, 'preset_mode'),
         options: (p.modes || []).map((m) => ({
           value: `mode:${m}`,
-          label: humanize(m),
+          label: localizeAttrValue(this.hass, 'climate', 'preset_mode', m),
           selected: m === p.current,
         })),
       };
@@ -293,7 +299,7 @@ export class MideaThermostatCard extends LitElement {
       currentLabel: '',
       options: (p.switches || []).map((s) => ({
         value: `switch:${s.entityId}`,
-        label: humanize(s.key),
+        label: attrLabel(this.hass, s.key),
         selected: s.isOn,
       })),
     };
@@ -377,11 +383,11 @@ export class MideaThermostatCard extends LitElement {
                       ></mt-mode-chips>`
                     : ''}
                   ${f.quickToggles.length
-                    ? html`<mt-toggle-chips
+                    ? html`<mt-toggle-dropdown
                         .hass=${this.hass}
                         .toggles=${f.quickToggles}
                         @toggle-changed=${this._onToggleChanged}
-                      ></mt-toggle-chips>`
+                      ></mt-toggle-dropdown>`
                     : ''}
                 </div>`
               : ''}

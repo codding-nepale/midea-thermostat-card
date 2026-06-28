@@ -15,5 +15,13 @@
   "editor.preset": "Voorinstellingbediening",
   "editor.sensors": "Sensoren (voettekst)",
   "editor.extra_switches": "Extra schakelaars",
-  "error.no_entity": "Definieer een climate-entiteit"
+  "error.no_entity": "Definieer een climate-entiteit",
+  "editor.dial": "Draaiknop",
+  "editor.step": "Temperatuurstap",
+  "editor.draggable": "Sleepbare draaiknop",
+  "attr.eco_mode": "Eco",
+  "attr.boost_mode": "Turbo",
+  "attr.sleep_mode": "Slaap",
+  "attr.comfort_mode": "Comfort",
+  "attr.breezeless": "Windloos"
 }

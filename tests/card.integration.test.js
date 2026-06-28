@@ -54,6 +54,7 @@ describe('midea-thermostat-card (integration)', () => {
   it('renders one mode chip per hvac mode', async () => {
     const el = await mountCard();
     const chips = el.renderRoot.querySelector('mt-mode-chips');
+    expect(chips).toBeTruthy();
     await chips.updateComplete;
     expect(chips.renderRoot.querySelectorAll('button.chip')).toHaveLength(6);
   });
@@ -74,7 +75,7 @@ describe('midea-thermostat-card (integration)', () => {
     });
   });
 
-  it('calls climate.set_hvac_mode when a mode chip is chosen', async () => {
+  it('calls climate.set_hvac_mode when a mode is chosen', async () => {
     const el = await mountCard();
     const chips = el.renderRoot.querySelector('mt-mode-chips');
     chips.dispatchEvent(

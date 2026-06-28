@@ -15,5 +15,13 @@
   "editor.preset": "Voreinstellungssteuerung",
   "editor.sensors": "Sensoren (Fußzeile)",
   "editor.extra_switches": "Zusätzliche Schalter",
-  "error.no_entity": "Eine climate-Entität festlegen"
+  "error.no_entity": "Eine climate-Entität festlegen",
+  "editor.dial": "Wählrad",
+  "editor.step": "Temperaturschritt",
+  "editor.draggable": "Wählrad ziehbar",
+  "attr.eco_mode": "Eco",
+  "attr.boost_mode": "Turbo",
+  "attr.sleep_mode": "Schlaf",
+  "attr.comfort_mode": "Komfort",
+  "attr.breezeless": "Windlos"
 }

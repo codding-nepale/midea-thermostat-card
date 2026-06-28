@@ -15,5 +15,13 @@
   "editor.preset": "Controle de predefinição",
   "editor.sensors": "Sensores (rodapé)",
   "editor.extra_switches": "Interruptores extras",
-  "error.no_entity": "Defina uma entidade climate"
+  "error.no_entity": "Defina uma entidade climate",
+  "editor.dial": "Mostrador",
+  "editor.step": "Passo de temperatura",
+  "editor.draggable": "Mostrador arrastável",
+  "attr.eco_mode": "Eco",
+  "attr.boost_mode": "Turbo",
+  "attr.sleep_mode": "Sono",
+  "attr.comfort_mode": "Conforto",
+  "attr.breezeless": "Sem vento"
 }

@@ -5,7 +5,7 @@ export const EDITOR_NAME = 'midea-thermostat-card-editor';
 // Child component element names.
 export const DIAL_NAME = 'mt-dial';
 export const MODE_CHIPS_NAME = 'mt-mode-chips';
-export const TOGGLE_CHIPS_NAME = 'mt-toggle-chips';
+export const TOGGLE_DROPDOWN_NAME = 'mt-toggle-dropdown';
 export const COLLAPSIBLE_ROW_NAME = 'mt-collapsible-row';
 export const SENSOR_CHIPS_NAME = 'mt-sensor-chips';
 
@@ -22,7 +22,7 @@ export const DEFAULT_FEATURES = {
 
 export const DEFAULT_DIAL = {
   draggable: true,
-  step: 0.5,
+  step: 1,
 };
 
 // Known midea_ac_lan attribute keys per domain (device type AC), with mdi icons.

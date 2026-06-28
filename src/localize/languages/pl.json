@@ -15,5 +15,13 @@
   "editor.preset": "Sterowanie ustawieniem",
   "editor.sensors": "Czujniki (stopka)",
   "editor.extra_switches": "Dodatkowe przełączniki",
-  "error.no_entity": "Zdefiniuj encję climate"
+  "error.no_entity": "Zdefiniuj encję climate",
+  "editor.dial": "Pokrętło",
+  "editor.step": "Krok temperatury",
+  "editor.draggable": "Przeciągane pokrętło",
+  "attr.eco_mode": "Eko",
+  "attr.boost_mode": "Turbo",
+  "attr.sleep_mode": "Sen",
+  "attr.comfort_mode": "Komfort",
+  "attr.breezeless": "Bez nawiewu"
 }

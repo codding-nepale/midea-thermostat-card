@@ -14,7 +14,7 @@ describe('normalizeConfig', () => {
     const c = normalizeConfig({ entity: 'climate.x' });
     expect(c.entity).toBe('climate.x');
     expect(c.show_current_as_secondary).toBe(true);
-    expect(c.dial.step).toBe(0.5);
+    expect(c.dial.step).toBe(1);
     expect(c.dial.draggable).toBe(true);
     expect(c.features.sensors).toEqual([]);
     expect(c.features.fan).toBe('auto');
@@ -42,8 +42,8 @@ describe('normalizeConfig', () => {
   });
 
   it('honors dial overrides', () => {
-    const c = normalizeConfig({ entity: 'climate.x', dial: { step: 1, draggable: false } });
-    expect(c.dial.step).toBe(1);
+    const c = normalizeConfig({ entity: 'climate.x', dial: { step: 2, draggable: false } });
+    expect(c.dial.step).toBe(2);
     expect(c.dial.draggable).toBe(false);
   });
 });

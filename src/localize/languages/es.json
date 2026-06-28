@@ -15,5 +15,13 @@
   "editor.preset": "Control de preajuste",
   "editor.sensors": "Sensores (pie de tarjeta)",
   "editor.extra_switches": "Interruptores adicionales",
-  "error.no_entity": "Defina una entidad climate"
+  "error.no_entity": "Defina una entidad climate",
+  "editor.dial": "Dial",
+  "editor.step": "Paso de temperatura",
+  "editor.draggable": "Dial deslizable",
+  "attr.eco_mode": "Eco",
+  "attr.boost_mode": "Turbo",
+  "attr.sleep_mode": "Reposo",
+  "attr.comfort_mode": "Confort",
+  "attr.breezeless": "Sin viento"
 }

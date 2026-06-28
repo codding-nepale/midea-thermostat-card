@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit';
 import { sharedStyles } from '../styles.js';
 import { MODE_CHIPS_NAME, HVAC_MODE_ICONS } from '../const.js';
 import { hvacColor } from '../core/hvac-colors.js';
-import { humanize } from '../core/format.js';
+import { localizeStateValue } from '../core/format.js';
 
 export class MtModeChips extends LitElement {
   static properties = {
@@ -51,7 +51,7 @@ export class MtModeChips extends LitElement {
             <button
               class="chip ${isActive ? 'active' : ''}"
               style=${isActive ? `background:${color};color:white;` : ''}
-              title=${humanize(mode)}
+              title=${localizeStateValue(this.hass, 'climate', mode)}
               @click=${() => this._select(mode)}
             >
               <ha-icon icon=${HVAC_MODE_ICONS[mode] || 'mdi:thermostat'}></ha-icon>

@@ -15,5 +15,13 @@
   "editor.preset": "Controllo preimpostazione",
   "editor.sensors": "Sensori (piè di pagina)",
   "editor.extra_switches": "Interruttori aggiuntivi",
-  "error.no_entity": "Definire un'entità climate"
+  "error.no_entity": "Definire un'entità climate",
+  "editor.dial": "Quadrante",
+  "editor.step": "Passo temperatura",
+  "editor.draggable": "Quadrante trascinabile",
+  "attr.eco_mode": "Eco",
+  "attr.boost_mode": "Turbo",
+  "attr.sleep_mode": "Notte",
+  "attr.comfort_mode": "Comfort",
+  "attr.breezeless": "Senza vento"
 }
