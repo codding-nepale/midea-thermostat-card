@@ -66,6 +66,6 @@ export const sharedStyles = css`
   .divider {
     height: 1px;
     background: var(--mt-divider);
-    margin: var(--mt-gap) 0;
+    margin: 0;
   }
 `;

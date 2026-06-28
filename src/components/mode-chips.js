@@ -14,6 +14,16 @@ export class MtModeChips extends LitElement {
   static styles = [
     sharedStyles,
     css`
+      /* segmented control: equal cells on a single row, never wraps */
+      .chip-row {
+        flex-wrap: nowrap;
+        gap: 6px;
+      }
+      button.chip {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 0;
+      }
       ha-icon {
         --mdc-icon-size: 22px;
       }

@@ -44,19 +44,34 @@ export class MideaThermostatCard extends LitElement {
   static styles = [
     sharedStyles,
     css`
+      ha-card {
+        padding: 12px 12px 16px;
+      }
+      .content {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
       .header {
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 4px 4px 0;
+        min-height: 32px;
       }
       .header .name {
         flex: 1;
         font-weight: 500;
         font-size: 1.05rem;
         color: var(--mt-fg);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .icon-button {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         border: none;
         background: transparent;
         color: var(--mt-fg-secondary);
@@ -68,10 +83,21 @@ export class MideaThermostatCard extends LitElement {
       .icon-button:hover {
         background: var(--mt-chip-bg-active);
       }
-      .controls {
+      /* dial + its chips form one tight visual block */
+      .climate {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .chips {
         display: flex;
         flex-direction: column;
         gap: 8px;
+      }
+      .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
       }
       .warning {
         padding: 16px;
@@ -306,69 +332,79 @@ export class MideaThermostatCard extends LitElement {
     const step = this._config.dial.step;
     const f = this._features;
 
+    const hasModeChips =
+      this._config.features.hvac_modes !== false && f.hvacModes.length;
+    const hasControls = f.fan.source || f.swing.source || f.preset.source;
+
     return html`
       <ha-card style="--mt-state-color:${color}">
-        <div class="header">
-          <span class="name">${name}</span>
-          <button
-            class="icon-button"
-            aria-label="more info"
-            @click=${() => this._fireMoreInfo(this._config.entity)}
-          >
-            <ha-icon icon="mdi:dots-vertical"></ha-icon>
-          </button>
+        <div class="content">
+          <div class="header">
+            <span class="name">${name}</span>
+            <button
+              class="icon-button"
+              aria-label="more info"
+              @click=${() => this._fireMoreInfo(this._config.entity)}
+            >
+              <ha-icon icon="mdi:dots-vertical"></ha-icon>
+            </button>
+          </div>
+
+          <div class="climate">
+            <mt-dial
+              .mode=${mode}
+              .value=${a.temperature}
+              .current=${this._config.show_current_as_secondary
+                ? a.current_temperature
+                : undefined}
+              .min=${min}
+              .max=${max}
+              .step=${step}
+              .draggable=${this._config.dial.draggable}
+              .unit=${this._unit}
+              .label=${formatEntityState(this.hass, climate)}
+              @value-changed=${this._onTargetChanged}
+            ></mt-dial>
+
+            ${hasModeChips || f.quickToggles.length
+              ? html`<div class="chips">
+                  ${hasModeChips
+                    ? html`<mt-mode-chips
+                        .hass=${this.hass}
+                        .hvacModes=${f.hvacModes}
+                        .active=${mode}
+                        @hvac-mode-changed=${this._onModeChanged}
+                      ></mt-mode-chips>`
+                    : ''}
+                  ${f.quickToggles.length
+                    ? html`<mt-toggle-chips
+                        .hass=${this.hass}
+                        .toggles=${f.quickToggles}
+                        @toggle-changed=${this._onToggleChanged}
+                      ></mt-toggle-chips>`
+                    : ''}
+                </div>`
+              : ''}
+          </div>
+
+          ${hasControls
+            ? html`<div class="divider"></div>
+                <div class="controls">
+                  ${this._renderRow('fan', this._buildFan())}
+                  ${this._renderRow('swing', this._buildSwing())}
+                  ${this._renderRow('preset', this._buildPreset())}
+                </div>`
+            : ''}
+
+          ${f.sensors.length
+            ? html`<div class="divider"></div>
+                <mt-sensor-chips
+                  .hass=${this.hass}
+                  .sensors=${f.sensors}
+                  @more-info=${(e) => this._fireMoreInfo(e.detail.entityId)}
+                ></mt-sensor-chips>`
+            : ''}
         </div>
-
-        <mt-dial
-          .mode=${mode}
-          .value=${a.temperature}
-          .current=${this._config.show_current_as_secondary
-            ? a.current_temperature
-            : undefined}
-          .min=${min}
-          .max=${max}
-          .step=${step}
-          .draggable=${this._config.dial.draggable}
-          .unit=${this._unit}
-          .label=${formatEntityState(this.hass, climate)}
-          @value-changed=${this._onTargetChanged}
-        ></mt-dial>
-
-        ${this._config.features.hvac_modes !== false && f.hvacModes.length
-          ? html`<mt-mode-chips
-              .hass=${this.hass}
-              .hvacModes=${f.hvacModes}
-              .active=${mode}
-              @hvac-mode-changed=${this._onModeChanged}
-            ></mt-mode-chips>`
-          : ''}
-
-        ${f.quickToggles.length
-          ? html`<mt-toggle-chips
-              .hass=${this.hass}
-              .toggles=${f.quickToggles}
-              @toggle-changed=${this._onToggleChanged}
-            ></mt-toggle-chips>`
-          : ''}
-
-        ${f.fan.source || f.swing.source || f.preset.source
-          ? html`<div class="divider"></div>`
-          : ''}
-
-        <div class="controls">
-          ${this._renderRow('fan', this._buildFan())}
-          ${this._renderRow('swing', this._buildSwing())}
-          ${this._renderRow('preset', this._buildPreset())}
-        </div>
-
-        ${f.sensors.length
-          ? html`<div class="divider"></div>
-              <mt-sensor-chips
-                .hass=${this.hass}
-                .sensors=${f.sensors}
-                @more-info=${(e) => this._fireMoreInfo(e.detail.entityId)}
-              ></mt-sensor-chips>`
-          : ''}
       </ha-card>
     `;
   }
