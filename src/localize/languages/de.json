@@ -1,0 +1,19 @@
+{
+  "fan": "Lüfter",
+  "swing": "Schwenken",
+  "preset": "Voreinstellung",
+  "sensors": "Sensoren",
+  "current": "Aktuell",
+  "off": "Aus",
+  "editor.entity": "Entität (climate)",
+  "editor.name": "Name",
+  "editor.icon": "Symbol",
+  "editor.show_current": "Aktuelle Temperatur anzeigen",
+  "editor.quick_toggles": "Schnellschalter",
+  "editor.fan": "Lüftersteuerung",
+  "editor.swing": "Schwenksteuerung",
+  "editor.preset": "Voreinstellungssteuerung",
+  "editor.sensors": "Sensoren (Fußzeile)",
+  "editor.extra_switches": "Zusätzliche Schalter",
+  "error.no_entity": "Eine climate-Entität festlegen"
+}

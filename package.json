@@ -1,0 +1,34 @@
+{
+  "name": "midea-thermostat-card",
+  "version": "0.1.0",
+  "description": "Modern Mushroom-style thermostat card for Midea A/C (midea_ac_lan) on Home Assistant.",
+  "type": "module",
+  "main": "dist/midea-thermostat-card.js",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "home-assistant",
+    "lovelace",
+    "hacs",
+    "midea",
+    "thermostat",
+    "climate",
+    "mushroom"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "lit": "^3.2.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "jsdom": "^25.0.1",
+    "rollup": "^4.24.0",
+    "vitest": "^2.1.4"
+  }
+}

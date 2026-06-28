@@ -1,0 +1,19 @@
+{
+  "fan": "Ventilator",
+  "swing": "Zwenken",
+  "preset": "Voorinstelling",
+  "sensors": "Sensoren",
+  "current": "Huidig",
+  "off": "Uit",
+  "editor.entity": "Entiteit (climate)",
+  "editor.name": "Naam",
+  "editor.icon": "Pictogram",
+  "editor.show_current": "Huidige temperatuur tonen",
+  "editor.quick_toggles": "Snelschakelaars",
+  "editor.fan": "Ventilatorbediening",
+  "editor.swing": "Zwenkbediening",
+  "editor.preset": "Voorinstellingbediening",
+  "editor.sensors": "Sensoren (voettekst)",
+  "editor.extra_switches": "Extra schakelaars",
+  "error.no_entity": "Definieer een climate-entiteit"
+}

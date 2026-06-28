@@ -1,0 +1,19 @@
+{
+  "fan": "Ventola",
+  "swing": "Oscillazione",
+  "preset": "Preimpostazione",
+  "sensors": "Sensori",
+  "current": "Attualmente",
+  "off": "Spento",
+  "editor.entity": "Entità (climate)",
+  "editor.name": "Nome",
+  "editor.icon": "Icona",
+  "editor.show_current": "Mostra temperatura attuale",
+  "editor.quick_toggles": "Interruttori rapidi",
+  "editor.fan": "Controllo ventola",
+  "editor.swing": "Controllo oscillazione",
+  "editor.preset": "Controllo preimpostazione",
+  "editor.sensors": "Sensori (piè di pagina)",
+  "editor.extra_switches": "Interruttori aggiuntivi",
+  "error.no_entity": "Definire un'entità climate"
+}

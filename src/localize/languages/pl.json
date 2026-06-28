@@ -1,0 +1,19 @@
+{
+  "fan": "Wentylator",
+  "swing": "Wahanie",
+  "preset": "Ustawienie",
+  "sensors": "Czujniki",
+  "current": "Obecnie",
+  "off": "Wyłączone",
+  "editor.entity": "Encja (climate)",
+  "editor.name": "Nazwa",
+  "editor.icon": "Ikona",
+  "editor.show_current": "Pokaż bieżącą temperaturę",
+  "editor.quick_toggles": "Szybkie przełączniki",
+  "editor.fan": "Sterowanie wentylatorem",
+  "editor.swing": "Sterowanie wahaniem",
+  "editor.preset": "Sterowanie ustawieniem",
+  "editor.sensors": "Czujniki (stopka)",
+  "editor.extra_switches": "Dodatkowe przełączniki",
+  "error.no_entity": "Zdefiniuj encję climate"
+}

@@ -1,0 +1,487 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const t=globalThis,e=t.ShadowRoot&&(void 0===t.ShadyCSS||t.ShadyCSS.nativeShadow)&&"adoptedStyleSheets"in Document.prototype&&"replace"in CSSStyleSheet.prototype,i=Symbol(),s=new WeakMap;let n=class{constructor(t,e,s){if(this._$cssResult$=!0,s!==i)throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");this.cssText=t,this.t=e}get styleSheet(){let t=this.o;const i=this.t;if(e&&void 0===t){const e=void 0!==i&&1===i.length;e&&(t=s.get(i)),void 0===t&&((this.o=t=new CSSStyleSheet).replaceSync(this.cssText),e&&s.set(i,t))}return t}toString(){return this.cssText}};const r=(t,...e)=>{const s=1===t.length?t[0]:e.reduce((e,i,s)=>e+(t=>{if(!0===t._$cssResult$)return t.cssText;if("number"==typeof t)return t;throw Error("Value passed to 'css' function must be a 'css' function result: "+t+". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.")})(i)+t[s+1],t[0]);return new n(s,t,i)},o=e?t=>t:t=>t instanceof CSSStyleSheet?(t=>{let e="";for(const i of t.cssRules)e+=i.cssText;return(t=>new n("string"==typeof t?t:t+"",void 0,i))(e)})(t):t,{is:a,defineProperty:c,getOwnPropertyDescriptor:l,getOwnPropertyNames:h,getOwnPropertySymbols:d,getPrototypeOf:u}=Object,p=globalThis,m=p.trustedTypes,g=m?m.emptyScript:"",_=p.reactiveElementPolyfillSupport,f=(t,e)=>t,v={toAttribute(t,e){switch(e){case Boolean:t=t?g:null;break;case Object:case Array:t=null==t?t:JSON.stringify(t)}return t},fromAttribute(t,e){let i=t;switch(e){case Boolean:i=null!==t;break;case Number:i=null===t?null:Number(t);break;case Object:case Array:try{i=JSON.parse(t)}catch(t){i=null}}return i}},$=(t,e)=>!a(t,e),y={attribute:!0,type:String,converter:v,reflect:!1,useDefault:!1,hasChanged:$};
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */Symbol.metadata??=Symbol("metadata"),p.litPropertyMetadata??=new WeakMap;let b=class extends HTMLElement{static addInitializer(t){this._$Ei(),(this.l??=[]).push(t)}static get observedAttributes(){return this.finalize(),this._$Eh&&[...this._$Eh.keys()]}static createProperty(t,e=y){if(e.state&&(e.attribute=!1),this._$Ei(),this.prototype.hasOwnProperty(t)&&((e=Object.create(e)).wrapped=!0),this.elementProperties.set(t,e),!e.noAccessor){const i=Symbol(),s=this.getPropertyDescriptor(t,i,e);void 0!==s&&c(this.prototype,t,s)}}static getPropertyDescriptor(t,e,i){const{get:s,set:n}=l(this.prototype,t)??{get(){return this[e]},set(t){this[e]=t}};return{get:s,set(e){const r=s?.call(this);n?.call(this,e),this.requestUpdate(t,r,i)},configurable:!0,enumerable:!0}}static getPropertyOptions(t){return this.elementProperties.get(t)??y}static _$Ei(){if(this.hasOwnProperty(f("elementProperties")))return;const t=u(this);t.finalize(),void 0!==t.l&&(this.l=[...t.l]),this.elementProperties=new Map(t.elementProperties)}static finalize(){if(this.hasOwnProperty(f("finalized")))return;if(this.finalized=!0,this._$Ei(),this.hasOwnProperty(f("properties"))){const t=this.properties,e=[...h(t),...d(t)];for(const i of e)this.createProperty(i,t[i])}const t=this[Symbol.metadata];if(null!==t){const e=litPropertyMetadata.get(t);if(void 0!==e)for(const[t,i]of e)this.elementProperties.set(t,i)}this._$Eh=new Map;for(const[t,e]of this.elementProperties){const i=this._$Eu(t,e);void 0!==i&&this._$Eh.set(i,t)}this.elementStyles=this.finalizeStyles(this.styles)}static finalizeStyles(t){const e=[];if(Array.isArray(t)){const i=new Set(t.flat(1/0).reverse());for(const t of i)e.unshift(o(t))}else void 0!==t&&e.push(o(t));return e}static _$Eu(t,e){const i=e.attribute;return!1===i?void 0:"string"==typeof i?i:"string"==typeof t?t.toLowerCase():void 0}constructor(){super(),this._$Ep=void 0,this.isUpdatePending=!1,this.hasUpdated=!1,this._$Em=null,this._$Ev()}_$Ev(){this._$ES=new Promise(t=>this.enableUpdating=t),this._$AL=new Map,this._$E_(),this.requestUpdate(),this.constructor.l?.forEach(t=>t(this))}addController(t){(this._$EO??=new Set).add(t),void 0!==this.renderRoot&&this.isConnected&&t.hostConnected?.()}removeController(t){this._$EO?.delete(t)}_$E_(){const t=new Map,e=this.constructor.elementProperties;for(const i of e.keys())this.hasOwnProperty(i)&&(t.set(i,this[i]),delete this[i]);t.size>0&&(this._$Ep=t)}createRenderRoot(){const i=this.shadowRoot??this.attachShadow(this.constructor.shadowRootOptions);return((i,s)=>{if(e)i.adoptedStyleSheets=s.map(t=>t instanceof CSSStyleSheet?t:t.styleSheet);else for(const e of s){const s=document.createElement("style"),n=t.litNonce;void 0!==n&&s.setAttribute("nonce",n),s.textContent=e.cssText,i.appendChild(s)}})(i,this.constructor.elementStyles),i}connectedCallback(){this.renderRoot??=this.createRenderRoot(),this.enableUpdating(!0),this._$EO?.forEach(t=>t.hostConnected?.())}enableUpdating(t){}disconnectedCallback(){this._$EO?.forEach(t=>t.hostDisconnected?.())}attributeChangedCallback(t,e,i){this._$AK(t,i)}_$ET(t,e){const i=this.constructor.elementProperties.get(t),s=this.constructor._$Eu(t,i);if(void 0!==s&&!0===i.reflect){const n=(void 0!==i.converter?.toAttribute?i.converter:v).toAttribute(e,i.type);this._$Em=t,null==n?this.removeAttribute(s):this.setAttribute(s,n),this._$Em=null}}_$AK(t,e){const i=this.constructor,s=i._$Eh.get(t);if(void 0!==s&&this._$Em!==s){const t=i.getPropertyOptions(s),n="function"==typeof t.converter?{fromAttribute:t.converter}:void 0!==t.converter?.fromAttribute?t.converter:v;this._$Em=s;const r=n.fromAttribute(e,t.type);this[s]=r??this._$Ej?.get(s)??r,this._$Em=null}}requestUpdate(t,e,i,s=!1,n){if(void 0!==t){const r=this.constructor;if(!1===s&&(n=this[t]),i??=r.getPropertyOptions(t),!((i.hasChanged??$)(n,e)||i.useDefault&&i.reflect&&n===this._$Ej?.get(t)&&!this.hasAttribute(r._$Eu(t,i))))return;this.C(t,e,i)}!1===this.isUpdatePending&&(this._$ES=this._$EP())}C(t,e,{useDefault:i,reflect:s,wrapped:n},r){i&&!(this._$Ej??=new Map).has(t)&&(this._$Ej.set(t,r??e??this[t]),!0!==n||void 0!==r)||(this._$AL.has(t)||(this.hasUpdated||i||(e=void 0),this._$AL.set(t,e)),!0===s&&this._$Em!==t&&(this._$Eq??=new Set).add(t))}async _$EP(){this.isUpdatePending=!0;try{await this._$ES}catch(t){Promise.reject(t)}const t=this.scheduleUpdate();return null!=t&&await t,!this.isUpdatePending}scheduleUpdate(){return this.performUpdate()}performUpdate(){if(!this.isUpdatePending)return;if(!this.hasUpdated){if(this.renderRoot??=this.createRenderRoot(),this._$Ep){for(const[t,e]of this._$Ep)this[t]=e;this._$Ep=void 0}const t=this.constructor.elementProperties;if(t.size>0)for(const[e,i]of t){const{wrapped:t}=i,s=this[e];!0!==t||this._$AL.has(e)||void 0===s||this.C(e,void 0,i,s)}}let t=!1;const e=this._$AL;try{t=this.shouldUpdate(e),t?(this.willUpdate(e),this._$EO?.forEach(t=>t.hostUpdate?.()),this.update(e)):this._$EM()}catch(e){throw t=!1,this._$EM(),e}t&&this._$AE(e)}willUpdate(t){}_$AE(t){this._$EO?.forEach(t=>t.hostUpdated?.()),this.hasUpdated||(this.hasUpdated=!0,this.firstUpdated(t)),this.updated(t)}_$EM(){this._$AL=new Map,this.isUpdatePending=!1}get updateComplete(){return this.getUpdateComplete()}getUpdateComplete(){return this._$ES}shouldUpdate(t){return!0}update(t){this._$Eq&&=this._$Eq.forEach(t=>this._$ET(t,this[t])),this._$EM()}updated(t){}firstUpdated(t){}};b.elementStyles=[],b.shadowRootOptions={mode:"open"},b[f("elementProperties")]=new Map,b[f("finalized")]=new Map,_?.({ReactiveElement:b}),(p.reactiveElementVersions??=[]).push("2.1.2");
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const w=globalThis,x=t=>t,A=w.trustedTypes,E=A?A.createPolicy("lit-html",{createHTML:t=>t}):void 0,S="$lit$",C=`lit$${Math.random().toFixed(9).slice(2)}$`,k="?"+C,P=`<${k}>`,M=document,O=()=>M.createComment(""),N=t=>null===t||"object"!=typeof t&&"function"!=typeof t,I=Array.isArray,z="[ \t\n\f\r]",U=/<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g,T=/-->/g,R=/>/g,H=RegExp(`>|${z}(?:([^\\s"'>=/]+)(${z}*=${z}*(?:[^ \t\n\f\r"'\`<>=]|("|')|))|$)`,"g"),V=/'/g,j=/"/g,D=/^(?:script|style|textarea|title)$/i,L=(t=>(e,...i)=>({_$litType$:t,strings:e,values:i}))(1),q=Symbol.for("lit-noChange"),B=Symbol.for("lit-nothing"),F=new WeakMap,W=M.createTreeWalker(M,129);function Z(t,e){if(!I(t)||!t.hasOwnProperty("raw"))throw Error("invalid template strings array");return void 0!==E?E.createHTML(e):e}const J=(t,e)=>{const i=t.length-1,s=[];let n,r=2===e?"<svg>":3===e?"<math>":"",o=U;for(let e=0;e<i;e++){const i=t[e];let a,c,l=-1,h=0;for(;h<i.length&&(o.lastIndex=h,c=o.exec(i),null!==c);)h=o.lastIndex,o===U?"!--"===c[1]?o=T:void 0!==c[1]?o=R:void 0!==c[2]?(D.test(c[2])&&(n=RegExp("</"+c[2],"g")),o=H):void 0!==c[3]&&(o=H):o===H?">"===c[0]?(o=n??U,l=-1):void 0===c[1]?l=-2:(l=o.lastIndex-c[2].length,a=c[1],o=void 0===c[3]?H:'"'===c[3]?j:V):o===j||o===V?o=H:o===T||o===R?o=U:(o=H,n=void 0);const d=o===H&&t[e+1].startsWith("/>")?" ":"";r+=o===U?i+P:l>=0?(s.push(a),i.slice(0,l)+S+i.slice(l)+C+d):i+C+(-2===l?e:d)}return[Z(t,r+(t[i]||"<?>")+(2===e?"</svg>":3===e?"</math>":"")),s]};class K{constructor({strings:t,_$litType$:e},i){let s;this.parts=[];let n=0,r=0;const o=t.length-1,a=this.parts,[c,l]=J(t,e);if(this.el=K.createElement(c,i),W.currentNode=this.el.content,2===e||3===e){const t=this.el.content.firstChild;t.replaceWith(...t.childNodes)}for(;null!==(s=W.nextNode())&&a.length<o;){if(1===s.nodeType){if(s.hasAttributes())for(const t of s.getAttributeNames())if(t.endsWith(S)){const e=l[r++],i=s.getAttribute(t).split(C),o=/([.?@])?(.*)/.exec(e);a.push({type:1,index:n,name:o[2],strings:i,ctor:"."===o[1]?tt:"?"===o[1]?et:"@"===o[1]?it:G}),s.removeAttribute(t)}else t.startsWith(C)&&(a.push({type:6,index:n}),s.removeAttribute(t));if(D.test(s.tagName)){const t=s.textContent.split(C),e=t.length-1;if(e>0){s.textContent=A?A.emptyScript:"";for(let i=0;i<e;i++)s.append(t[i],O()),W.nextNode(),a.push({type:2,index:++n});s.append(t[e],O())}}}else if(8===s.nodeType)if(s.data===k)a.push({type:2,index:n});else{let t=-1;for(;-1!==(t=s.data.indexOf(C,t+1));)a.push({type:7,index:n}),t+=C.length-1}n++}}static createElement(t,e){const i=M.createElement("template");return i.innerHTML=t,i}}function Q(t,e,i=t,s){if(e===q)return e;let n=void 0!==s?i._$Co?.[s]:i._$Cl;const r=N(e)?void 0:e._$litDirective$;return n?.constructor!==r&&(n?._$AO?.(!1),void 0===r?n=void 0:(n=new r(t),n._$AT(t,i,s)),void 0!==s?(i._$Co??=[])[s]=n:i._$Cl=n),void 0!==n&&(e=Q(t,n._$AS(t,e.values),n,s)),e}class X{constructor(t,e){this._$AV=[],this._$AN=void 0,this._$AD=t,this._$AM=e}get parentNode(){return this._$AM.parentNode}get _$AU(){return this._$AM._$AU}u(t){const{el:{content:e},parts:i}=this._$AD,s=(t?.creationScope??M).importNode(e,!0);W.currentNode=s;let n=W.nextNode(),r=0,o=0,a=i[0];for(;void 0!==a;){if(r===a.index){let e;2===a.type?e=new Y(n,n.nextSibling,this,t):1===a.type?e=new a.ctor(n,a.name,a.strings,this,t):6===a.type&&(e=new st(n,this,t)),this._$AV.push(e),a=i[++o]}r!==a?.index&&(n=W.nextNode(),r++)}return W.currentNode=M,s}p(t){let e=0;for(const i of this._$AV)void 0!==i&&(void 0!==i.strings?(i._$AI(t,i,e),e+=i.strings.length-2):i._$AI(t[e])),e++}}class Y{get _$AU(){return this._$AM?._$AU??this._$Cv}constructor(t,e,i,s){this.type=2,this._$AH=B,this._$AN=void 0,this._$AA=t,this._$AB=e,this._$AM=i,this.options=s,this._$Cv=s?.isConnected??!0}get parentNode(){let t=this._$AA.parentNode;const e=this._$AM;return void 0!==e&&11===t?.nodeType&&(t=e.parentNode),t}get startNode(){return this._$AA}get endNode(){return this._$AB}_$AI(t,e=this){t=Q(this,t,e),N(t)?t===B||null==t||""===t?(this._$AH!==B&&this._$AR(),this._$AH=B):t!==this._$AH&&t!==q&&this._(t):void 0!==t._$litType$?this.$(t):void 0!==t.nodeType?this.T(t):(t=>I(t)||"function"==typeof t?.[Symbol.iterator])(t)?this.k(t):this._(t)}O(t){return this._$AA.parentNode.insertBefore(t,this._$AB)}T(t){this._$AH!==t&&(this._$AR(),this._$AH=this.O(t))}_(t){this._$AH!==B&&N(this._$AH)?this._$AA.nextSibling.data=t:this.T(M.createTextNode(t)),this._$AH=t}$(t){const{values:e,_$litType$:i}=t,s="number"==typeof i?this._$AC(t):(void 0===i.el&&(i.el=K.createElement(Z(i.h,i.h[0]),this.options)),i);if(this._$AH?._$AD===s)this._$AH.p(e);else{const t=new X(s,this),i=t.u(this.options);t.p(e),this.T(i),this._$AH=t}}_$AC(t){let e=F.get(t.strings);return void 0===e&&F.set(t.strings,e=new K(t)),e}k(t){I(this._$AH)||(this._$AH=[],this._$AR());const e=this._$AH;let i,s=0;for(const n of t)s===e.length?e.push(i=new Y(this.O(O()),this.O(O()),this,this.options)):i=e[s],i._$AI(n),s++;s<e.length&&(this._$AR(i&&i._$AB.nextSibling,s),e.length=s)}_$AR(t=this._$AA.nextSibling,e){for(this._$AP?.(!1,!0,e);t!==this._$AB;){const e=x(t).nextSibling;x(t).remove(),t=e}}setConnected(t){void 0===this._$AM&&(this._$Cv=t,this._$AP?.(t))}}class G{get tagName(){return this.element.tagName}get _$AU(){return this._$AM._$AU}constructor(t,e,i,s,n){this.type=1,this._$AH=B,this._$AN=void 0,this.element=t,this.name=e,this._$AM=s,this.options=n,i.length>2||""!==i[0]||""!==i[1]?(this._$AH=Array(i.length-1).fill(new String),this.strings=i):this._$AH=B}_$AI(t,e=this,i,s){const n=this.strings;let r=!1;if(void 0===n)t=Q(this,t,e,0),r=!N(t)||t!==this._$AH&&t!==q,r&&(this._$AH=t);else{const s=t;let o,a;for(t=n[0],o=0;o<n.length-1;o++)a=Q(this,s[i+o],e,o),a===q&&(a=this._$AH[o]),r||=!N(a)||a!==this._$AH[o],a===B?t=B:t!==B&&(t+=(a??"")+n[o+1]),this._$AH[o]=a}r&&!s&&this.j(t)}j(t){t===B?this.element.removeAttribute(this.name):this.element.setAttribute(this.name,t??"")}}class tt extends G{constructor(){super(...arguments),this.type=3}j(t){this.element[this.name]=t===B?void 0:t}}class et extends G{constructor(){super(...arguments),this.type=4}j(t){this.element.toggleAttribute(this.name,!!t&&t!==B)}}class it extends G{constructor(t,e,i,s,n){super(t,e,i,s,n),this.type=5}_$AI(t,e=this){if((t=Q(this,t,e,0)??B)===q)return;const i=this._$AH,s=t===B&&i!==B||t.capture!==i.capture||t.once!==i.once||t.passive!==i.passive,n=t!==B&&(i===B||s);s&&this.element.removeEventListener(this.name,this,i),n&&this.element.addEventListener(this.name,this,t),this._$AH=t}handleEvent(t){"function"==typeof this._$AH?this._$AH.call(this.options?.host??this.element,t):this._$AH.handleEvent(t)}}class st{constructor(t,e,i){this.element=t,this.type=6,this._$AN=void 0,this._$AM=e,this.options=i}get _$AU(){return this._$AM._$AU}_$AI(t){Q(this,t)}}const nt=w.litHtmlPolyfillSupport;nt?.(K,Y),(w.litHtmlVersions??=[]).push("3.3.3");const rt=globalThis;
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */class ot extends b{constructor(){super(...arguments),this.renderOptions={host:this},this._$Do=void 0}createRenderRoot(){const t=super.createRenderRoot();return this.renderOptions.renderBefore??=t.firstChild,t}update(t){const e=this.render();this.hasUpdated||(this.renderOptions.isConnected=this.isConnected),super.update(t),this._$Do=((t,e,i)=>{const s=i?.renderBefore??e;let n=s._$litPart$;if(void 0===n){const t=i?.renderBefore??null;s._$litPart$=n=new Y(e.insertBefore(O(),t),t,void 0,i??{})}return n._$AI(t),n})(e,this.renderRoot,this.renderOptions)}connectedCallback(){super.connectedCallback(),this._$Do?.setConnected(!0)}disconnectedCallback(){super.disconnectedCallback(),this._$Do?.setConnected(!1)}render(){return q}}ot._$litElement$=!0,ot.finalized=!0,rt.litElementHydrateSupport?.({LitElement:ot});const at=rt.litElementPolyfillSupport;at?.({LitElement:ot}),(rt.litElementVersions??=[]).push("4.2.2");const ct="midea-thermostat-card",lt="midea-thermostat-card-editor",ht="mt-dial",dt="mt-mode-chips",ut="mt-toggle-chips",pt="mt-collapsible-row",mt="mt-sensor-chips",gt={hvac_modes:!0,quick_toggles:["eco_mode","boost_mode","sleep_mode"],fan:"auto",swing:"auto",preset:"auto",sensors:[],extra_switches:[]},_t={draggable:!0,step:.5},ft={aux_heating:"mdi:heat-wave",boost_mode:"mdi:turbine",breezeless:"mdi:tailwind",comfort_mode:"mdi:alpha-c-circle",dry:"mdi:air-filter",eco_mode:"mdi:leaf-circle",frost_protect:"mdi:snowflake-alert",indirect_wind:"mdi:tailwind",natural_wind:"mdi:tailwind",prompt_tone:"mdi:bell",power:"mdi:power",screen_display:"mdi:television-ambient-light",screen_display_alternate:"mdi:television-ambient-light",sleep_mode:"mdi:power-sleep",out_silent:"mdi:hvac-off",smart_eye:"mdi:eye",swing_horizontal:"mdi:arrow-split-vertical",swing_vertical:"mdi:arrow-split-horizontal",anion:"mdi:vanish",sound:"mdi:volume-high",self_clean:"mdi:air-filter"},vt={indoor_humidity:"mdi:water-percent",indoor_temperature:"mdi:thermometer",outdoor_temperature:"mdi:thermometer",total_energy_consumption:"mdi:lightning-bolt",current_energy_consumption:"mdi:lightning-bolt",realtime_power:"mdi:flash",pmv:"mdi:thermometer-lines",error_code:"mdi:alert-box"},$t=["swing_vertical","swing_horizontal"],yt=["wind_ud_angle","wind_lr_angle"],bt=["comfort_mode","breezeless"],wt={off:"mdi:power",cool:"mdi:snowflake",heat:"mdi:white-balance-sunny",dry:"mdi:water-percent",fan_only:"mdi:fan",auto:"mdi:autorenew",heat_cool:"mdi:sun-snowflake-variant"},xt=r`
+  :host {
+    --mt-gap: 12px;
+    --mt-radius: 14px;
+    --mt-chip-height: 38px;
+    --mt-chip-radius: 12px;
+    --mt-chip-bg: var(
+      --ha-card-background,
+      var(--card-background-color, #1c1c1c)
+    );
+    --mt-chip-bg-active: rgba(var(--rgb-primary-text-color, 255, 255, 255), 0.08);
+    --mt-fg: var(--primary-text-color, #e1e1e1);
+    --mt-fg-secondary: var(--secondary-text-color, #9b9b9b);
+    --mt-accent: var(--primary-color, #03a9f4);
+    --mt-divider: var(--divider-color, rgba(255, 255, 255, 0.12));
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  button.chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: var(--mt-chip-height);
+    padding: 0 12px;
+    border: none;
+    border-radius: var(--mt-chip-radius);
+    background: var(--mt-chip-bg-active);
+    color: var(--mt-fg);
+    font: inherit;
+    cursor: pointer;
+    transition: background 120ms ease, color 120ms ease, transform 80ms ease;
+  }
+
+  button.chip:hover {
+    background: rgba(var(--rgb-primary-text-color, 255, 255, 255), 0.14);
+  }
+
+  button.chip:active {
+    transform: scale(0.96);
+  }
+
+  button.chip.active {
+    color: white;
+  }
+
+  ha-icon {
+    --mdc-icon-size: 20px;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--mt-divider);
+    margin: var(--mt-gap) 0;
+  }
+`;const At={off:"var(--state-climate-off-color, #8a8a8a)",cool:"var(--state-climate-cool-color, #2196F3)",heat:"var(--state-climate-heat-color, #FF8100)",dry:"var(--state-climate-dry-color, #FFCE49)",fan_only:"var(--state-climate-fan_only-color, #00BCD4)",auto:"var(--state-climate-auto-color, #43A047)",heat_cool:"var(--state-climate-heat_cool-color, #43A047)"};function Et(t){return At[t]||At.off}function St(t,e){if(t&&"function"==typeof t.formatEntityState&&e)try{return t.formatEntityState(e)}catch(t){}return e?e.state:""}function Ct(t,e,i){if(t&&"function"==typeof t.formatEntityAttributeValue&&e)try{return t.formatEntityAttributeValue(e,i)}catch(t){}return kt(e&&e.attributes&&e.attributes[i])}function kt(t){if(null==t)return"";const e=String(t).replace(/_/g," ");return e.charAt(0).toUpperCase()+e.slice(1)}const Pt={en:{fan:"Fan",swing:"Swing",preset:"Preset",sensors:"Sensors",current:"Currently",off:"Off","editor.entity":"Entity (climate)","editor.name":"Name","editor.icon":"Icon","editor.show_current":"Show current temperature","editor.quick_toggles":"Quick toggles","editor.fan":"Fan control","editor.swing":"Swing control","editor.preset":"Preset control","editor.sensors":"Sensors (footer)","editor.extra_switches":"Extra switches","error.no_entity":"Define a climate entity"},fr:{fan:"Ventilateur",swing:"Oscillation",preset:"Préréglage",sensors:"Capteurs",current:"Actuellement",off:"Désactivé","editor.entity":"Entité (climate)","editor.name":"Nom","editor.icon":"Icône","editor.show_current":"Afficher la température actuelle","editor.quick_toggles":"Bascules rapides","editor.fan":"Contrôle ventilateur","editor.swing":"Contrôle oscillation","editor.preset":"Contrôle préréglage","editor.sensors":"Capteurs (pied de carte)","editor.extra_switches":"Interrupteurs supplémentaires","error.no_entity":"Définissez une entité climate"},de:{fan:"Lüfter",swing:"Schwenken",preset:"Voreinstellung",sensors:"Sensoren",current:"Aktuell",off:"Aus","editor.entity":"Entität (climate)","editor.name":"Name","editor.icon":"Symbol","editor.show_current":"Aktuelle Temperatur anzeigen","editor.quick_toggles":"Schnellschalter","editor.fan":"Lüftersteuerung","editor.swing":"Schwenksteuerung","editor.preset":"Voreinstellungssteuerung","editor.sensors":"Sensoren (Fußzeile)","editor.extra_switches":"Zusätzliche Schalter","error.no_entity":"Eine climate-Entität festlegen"},es:{fan:"Ventilador",swing:"Oscilación",preset:"Preajuste",sensors:"Sensores",current:"Actualmente",off:"Apagado","editor.entity":"Entidad (climate)","editor.name":"Nombre","editor.icon":"Icono","editor.show_current":"Mostrar temperatura actual","editor.quick_toggles":"Conmutadores rápidos","editor.fan":"Control del ventilador","editor.swing":"Control de oscilación","editor.preset":"Control de preajuste","editor.sensors":"Sensores (pie de tarjeta)","editor.extra_switches":"Interruptores adicionales","error.no_entity":"Defina una entidad climate"},it:{fan:"Ventola",swing:"Oscillazione",preset:"Preimpostazione",sensors:"Sensori",current:"Attualmente",off:"Spento","editor.entity":"Entità (climate)","editor.name":"Nome","editor.icon":"Icona","editor.show_current":"Mostra temperatura attuale","editor.quick_toggles":"Interruttori rapidi","editor.fan":"Controllo ventola","editor.swing":"Controllo oscillazione","editor.preset":"Controllo preimpostazione","editor.sensors":"Sensori (piè di pagina)","editor.extra_switches":"Interruttori aggiuntivi","error.no_entity":"Definire un'entità climate"},nl:{fan:"Ventilator",swing:"Zwenken",preset:"Voorinstelling",sensors:"Sensoren",current:"Huidig",off:"Uit","editor.entity":"Entiteit (climate)","editor.name":"Naam","editor.icon":"Pictogram","editor.show_current":"Huidige temperatuur tonen","editor.quick_toggles":"Snelschakelaars","editor.fan":"Ventilatorbediening","editor.swing":"Zwenkbediening","editor.preset":"Voorinstellingbediening","editor.sensors":"Sensoren (voettekst)","editor.extra_switches":"Extra schakelaars","error.no_entity":"Definieer een climate-entiteit"},"pt-BR":{fan:"Ventilador",swing:"Oscilação",preset:"Predefinição",sensors:"Sensores",current:"Atualmente",off:"Desligado","editor.entity":"Entidade (climate)","editor.name":"Nome","editor.icon":"Ícone","editor.show_current":"Mostrar temperatura atual","editor.quick_toggles":"Alternadores rápidos","editor.fan":"Controle do ventilador","editor.swing":"Controle de oscilação","editor.preset":"Controle de predefinição","editor.sensors":"Sensores (rodapé)","editor.extra_switches":"Interruptores extras","error.no_entity":"Defina uma entidade climate"},pl:{fan:"Wentylator",swing:"Wahanie",preset:"Ustawienie",sensors:"Czujniki",current:"Obecnie",off:"Wyłączone","editor.entity":"Encja (climate)","editor.name":"Nazwa","editor.icon":"Ikona","editor.show_current":"Pokaż bieżącą temperaturę","editor.quick_toggles":"Szybkie przełączniki","editor.fan":"Sterowanie wentylatorem","editor.swing":"Sterowanie wahaniem","editor.preset":"Sterowanie ustawieniem","editor.sensors":"Czujniki (stopka)","editor.extra_switches":"Dodatkowe przełączniki","error.no_entity":"Zdefiniuj encję climate"}};function Mt(t,e){const i=function(t){return t&&(t.locale?.language||t.language)||"en"}(t),s=Pt.en||{};return(Pt[i]||{})[e]??s[e]??e}function Ot(t,e,i){return t.callService("switch",i?"turn_on":"turn_off",{entity_id:e})}function Nt(t,e,i){return Math.min(i,Math.max(e,t))}function It(t,e,i=0){return i+Math.round((t-i)/e)*e}function zt(t){return 135+270*Nt(t,0,1)}function Ut(t,e,i,s){const n=s*Math.PI/180;return{x:t+i*Math.cos(n),y:e+i*Math.sin(n)}}function Tt(t,e,i,s,n){const r=zt(s),o=zt(n),a=Ut(t,e,i,r),c=Ut(t,e,i,o),l=o-r>180?1:0;return`M ${a.x} ${a.y} A ${i} ${i} 0 ${l} 1 ${c.x} ${c.y}`}const Rt=100;class Ht extends ot{static properties={mode:{},value:{type:Number},current:{type:Number},min:{type:Number},max:{type:Number},step:{type:Number},draggable:{type:Boolean},label:{},unit:{},_dragValue:{state:!0}};constructor(){super(),this.min=16,this.max=30,this.step=.5,this.draggable=!0,this.unit="°C",this._dragValue=null,this._dragging=!1}static styles=[xt,r`
+      .dial {
+        position: relative;
+        width: 200px;
+        max-width: 100%;
+        margin: 0 auto;
+        aspect-ratio: 1 / 1;
+        touch-action: none;
+        user-select: none;
+      }
+      svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        overflow: visible;
+      }
+      .track {
+        fill: none;
+        stroke: var(--mt-divider);
+        stroke-width: 10;
+        stroke-linecap: round;
+      }
+      .value {
+        fill: none;
+        stroke-width: 10;
+        stroke-linecap: round;
+        transition: d 120ms ease;
+      }
+      .handle {
+        stroke: var(--ha-card-background, var(--card-background-color, #1c1c1c));
+        stroke-width: 3;
+        cursor: grab;
+      }
+      .center {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        text-align: center;
+      }
+      .label {
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-bottom: 2px;
+      }
+      .target {
+        display: flex;
+        align-items: flex-start;
+        line-height: 1;
+        color: var(--mt-fg);
+      }
+      .target-value {
+        font-size: 2.4rem;
+        font-weight: 600;
+      }
+      .unit {
+        font-size: 1rem;
+        margin-top: 4px;
+        margin-left: 2px;
+        color: var(--mt-fg-secondary);
+      }
+      .current {
+        font-size: 0.85rem;
+        color: var(--mt-fg-secondary);
+        margin-top: 6px;
+      }
+      .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-top: 8px;
+      }
+      button.round {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1.4rem;
+        padding: 0;
+      }
+    `];get _displayValue(){return null!=this._dragValue?this._dragValue:this.value}_emit(t){this.dispatchEvent(new CustomEvent("value-changed",{detail:{value:t},bubbles:!0,composed:!0}))}_stepBy(t){const e=Nt(It((null!=this.value?this.value:this.min)+t*this.step,this.step,this.min),this.min,this.max);this._emit(e)}_valueFromEvent(t){const e=this.renderRoot.querySelector("svg");if(!e)return null;const i=e.getBoundingClientRect(),s=i.left+i.width/2,n=i.top+i.height/2;let r=180*Math.atan2(t.clientY-n,t.clientX-s)/Math.PI;r<0&&(r+=360),r<90&&(r+=360);const o=Nt((r-135)/270,0,1);return Nt(It(this.min+o*(this.max-this.min),this.step,this.min),this.min,this.max)}_onPointerDown(t){if(!this.draggable)return;this._dragging=!0;const e=this._valueFromEvent(t);null!=e&&(this._dragValue=e)}_onPointerMove(t){if(!this._dragging)return;const e=this._valueFromEvent(t);null!=e&&(this._dragValue=e)}_onPointerUp(){this._dragging&&(this._dragging=!1,null!=this._dragValue&&(this._emit(this._dragValue),this._dragValue=null))}render(){const t=null!=this._displayValue?this._displayValue:this.min,e=function(t,e,i){return i===e?0:Nt((t-e)/(i-e),0,1)}(t,this.min,this.max),i=Et(this.mode),s=Tt(Rt,Rt,80,0,1),n=Tt(Rt,Rt,80,0,Math.max(e,1e-4)),r=Ut(Rt,Rt,80,zt(e));return L`
+      <div
+        class="dial"
+        @pointermove=${this._onPointerMove}
+        @pointerup=${this._onPointerUp}
+        @pointerleave=${this._onPointerUp}
+      >
+        <svg viewBox="0 0 200 200" @pointerdown=${this._onPointerDown}>
+          <path class="track" d=${s}></path>
+          <path class="value" d=${n} stroke=${i}></path>
+          <circle
+            class="handle"
+            cx=${r.x}
+            cy=${r.y}
+            r="9"
+            fill=${i}
+            style="opacity:${this.draggable?1:0}"
+          ></circle>
+        </svg>
+        <div class="center">
+          ${this.label?L`<div class="label" style="color:${i}">${this.label}</div>`:""}
+          <div class="target">
+            <span class="target-value">${Number(t).toFixed(1)}</span>
+            <span class="unit">${this.unit}</span>
+          </div>
+          ${null!=this.current?L`<div class="current">
+                ↓ ${Number(this.current).toFixed(1)}${this.unit}
+              </div>`:""}
+        </div>
+        <div class="buttons">
+          <button
+            class="chip round"
+            aria-label="decrease"
+            @click=${()=>this._stepBy(-1)}
+          >
+            −
+          </button>
+          <button
+            class="chip round"
+            aria-label="increase"
+            @click=${()=>this._stepBy(1)}
+          >
+            +
+          </button>
+        </div>
+      </div>
+    `}}customElements.get(ht)||customElements.define(ht,Ht);class Vt extends ot{static properties={hass:{attribute:!1},hvacModes:{attribute:!1},active:{}};static styles=[xt,r`
+      ha-icon {
+        --mdc-icon-size: 22px;
+      }
+    `];_select(t){this.dispatchEvent(new CustomEvent("hvac-mode-changed",{detail:{mode:t},bubbles:!0,composed:!0}))}render(){const t=this.hvacModes||[];return L`
+      <div class="chip-row">
+        ${t.map(t=>{const e=Et(t),i=t===this.active;return L`
+            <button
+              class="chip ${i?"active":""}"
+              style=${i?`background:${e};color:white;`:""}
+              title=${kt(t)}
+              @click=${()=>this._select(t)}
+            >
+              <ha-icon icon=${wt[t]||"mdi:thermostat"}></ha-icon>
+            </button>
+          `})}
+      </div>
+    `}}customElements.get(dt)||customElements.define(dt,Vt);class jt extends ot{static properties={hass:{attribute:!1},toggles:{attribute:!1}};static styles=[xt,r`
+      button.chip.pressed {
+        background: var(--mt-accent);
+        color: white;
+      }
+      .label {
+        font-size: 0.85rem;
+      }
+      ha-icon {
+        --mdc-icon-size: 20px;
+      }
+    `];_toggle(t){this.dispatchEvent(new CustomEvent("toggle-changed",{detail:{entityId:t.entityId,on:!t.isOn},bubbles:!0,composed:!0}))}_label(t){const e=this.hass?.states?.[t.entityId],i=e?.attributes?.friendly_name;return i||kt(t.key)}render(){const t=this.toggles||[];return t.length?L`
+      <div class="chip-row">
+        ${t.map(t=>L`
+            <button
+              class="chip ${t.isOn?"pressed":""}"
+              title=${this._label(t)}
+              @click=${()=>this._toggle(t)}
+            >
+              <ha-icon icon=${ft[t.key]||"mdi:toggle-switch"}></ha-icon>
+              <span class="label">${this._label(t)}</span>
+            </button>
+          `)}
+      </div>
+    `:L``}}customElements.get(ut)||customElements.define(ut,jt);class Dt extends ot{static properties={icon:{},title:{},currentLabel:{},options:{attribute:!1},open:{type:Boolean}};constructor(){super(),this.open=!1,this.options=[]}static styles=[xt,r`
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 8px 4px;
+        border: none;
+        background: transparent;
+        color: var(--mt-fg);
+        font: inherit;
+        cursor: pointer;
+        border-radius: var(--mt-chip-radius);
+      }
+      .header:hover {
+        background: var(--mt-chip-bg-active);
+      }
+      .title {
+        flex: 1;
+        text-align: left;
+        font-weight: 500;
+      }
+      .current {
+        color: var(--mt-fg-secondary);
+        font-size: 0.9rem;
+      }
+      .chevron {
+        transition: transform 150ms ease;
+      }
+      .chevron.open {
+        transform: rotate(180deg);
+      }
+      .options {
+        padding: 6px 4px 10px;
+      }
+      button.opt.selected {
+        background: var(--mt-accent);
+        color: white;
+      }
+      ha-icon {
+        --mdc-icon-size: 20px;
+      }
+    `];_toggleOpen(){this.dispatchEvent(new CustomEvent("toggle-open",{bubbles:!0,composed:!0}))}_select(t){this.dispatchEvent(new CustomEvent("option-selected",{detail:{value:t},bubbles:!0,composed:!0}))}render(){const t=this.options||[];return L`
+      <div class="row-wrap">
+        <button class="header" @click=${this._toggleOpen}>
+          ${this.icon?L`<ha-icon icon=${this.icon}></ha-icon>`:""}
+          <span class="title">${this.title}</span>
+          <span class="current">${this.currentLabel||""}</span>
+          <ha-icon
+            class="chevron ${this.open?"open":""}"
+            icon="mdi:chevron-down"
+          ></ha-icon>
+        </button>
+        ${this.open?L`
+              <div class="options chip-row">
+                ${t.map(t=>L`
+                    <button
+                      class="chip opt ${t.selected?"selected":""}"
+                      @click=${()=>this._select(t.value)}
+                    >
+                      ${t.label}
+                    </button>
+                  `)}
+              </div>
+            `:""}
+      </div>
+    `}}customElements.get(pt)||customElements.define(pt,Dt);class Lt extends ot{static properties={hass:{attribute:!1},sensors:{attribute:!1}};static styles=[xt,r`
+      .chip {
+        cursor: pointer;
+        font-size: 0.85rem;
+      }
+      ha-icon {
+        --mdc-icon-size: 18px;
+        color: var(--mt-fg-secondary);
+      }
+    `];_moreInfo(t){this.dispatchEvent(new CustomEvent("more-info",{detail:{entityId:t},bubbles:!0,composed:!0}))}render(){const t=this.sensors||[];return t.length?L`
+      <div class="chip-row">
+        ${t.map(t=>L`
+            <button class="chip" @click=${()=>this._moreInfo(t.entityId)}>
+              <ha-icon icon=${vt[t.key]||"mdi:gauge"}></ha-icon>
+              <span>${St(this.hass,t.stateObj)}</span>
+            </button>
+          `)}
+      </div>
+    `:L``}}customElements.get(mt)||customElements.define(mt,Lt);const qt=t=>[{value:"auto",label:"Auto"},{value:"climate",label:"Climate"},...t,{value:"hidden",label:"Hidden"}];class Bt extends ot{static properties={hass:{attribute:!1},_config:{state:!0}};static styles=r`
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 8px 4px;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    input[type='text'] {
+      flex: 1;
+    }
+  `;setConfig(t){this._config={...t}}_emit(){this.dispatchEvent(new CustomEvent("config-changed",{detail:{config:this._config},bubbles:!0,composed:!0}))}_setValue(t,e){this._config={...this._config,[t]:e},this._emit()}_valueChanged(t){t.stopPropagation(),this._config={...t.detail.value},this._emit()}_schema(){return[{name:"entity",required:!0,selector:{entity:{domain:"climate"}}},{name:"name",selector:{text:{}}},{name:"icon",selector:{icon:{}}},{name:"show_current_as_secondary",selector:{boolean:{}}},{type:"expandable",name:"features",schema:[{name:"fan",selector:{select:{options:qt([{value:"number",label:"Number"}])}}},{name:"swing",selector:{select:{options:qt([{value:"switches",label:"Switches"}])}}},{name:"preset",selector:{select:{options:qt([{value:"switches",label:"Switches"}])}}}]}]}_computeLabel=t=>{const e=`editor.${t.name}`,i=Mt(this.hass,e);return i===e?kt(t.name):i};render(){return this._config?customElements.get("ha-form")?L`
+        <ha-form
+          .hass=${this.hass}
+          .data=${this._config}
+          .schema=${this._schema()}
+          .computeLabel=${this._computeLabel}
+          @value-changed=${this._valueChanged}
+        ></ha-form>
+      `:L`
+      <div class="form">
+        <label>
+          ${Mt(this.hass,"editor.name")}
+          <input
+            id="name"
+            type="text"
+            .value=${this._config.name||""}
+            @input=${t=>this._setValue("name",t.target.value)}
+          />
+        </label>
+        <label>
+          ${Mt(this.hass,"editor.show_current")}
+          <input
+            id="show_current"
+            type="checkbox"
+            .checked=${!1!==this._config.show_current_as_secondary}
+            @change=${t=>this._setValue("show_current_as_secondary",t.target.checked)}
+          />
+        </label>
+      </div>
+    `:L``}}customElements.get(lt)||customElements.define(lt,Bt);class Ft extends ot{static properties={hass:{attribute:!1},_config:{state:!0},_open:{state:!0}};constructor(){super(),this._open={fan:!1,swing:!1,preset:!1},this._features=null}static styles=[xt,r`
+      .header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 4px 0;
+      }
+      .header .name {
+        flex: 1;
+        font-weight: 500;
+        font-size: 1.05rem;
+        color: var(--mt-fg);
+      }
+      .icon-button {
+        border: none;
+        background: transparent;
+        color: var(--mt-fg-secondary);
+        cursor: pointer;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+      }
+      .icon-button:hover {
+        background: var(--mt-chip-bg-active);
+      }
+      .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .warning {
+        padding: 16px;
+        color: var(--error-color, #db4437);
+      }
+    `];setConfig(t){this._config=function(t){if(!t||"object"!=typeof t||!t.entity)throw new Error("entity (climate.*) is required");if(!String(t.entity).startsWith("climate."))throw new Error("entity must be a climate.* entity");const e={...gt,...t.features||{}};return e.quick_toggles=[...e.quick_toggles||[]],e.sensors=[...e.sensors||[]],e.extra_switches=[...e.extra_switches||[]],{entity:t.entity,name:t.name,icon:t.icon,show_current_as_secondary:void 0===t.show_current_as_secondary||!!t.show_current_as_secondary,dial:{..._t,...t.dial||{}},features:e}}(t)}getCardSize(){return 6}static getStubConfig(){return{type:`custom:${ct}`,entity:""}}static getConfigElement(){return document.createElement(lt)}willUpdate(t){(t.has("hass")||t.has("_config"))&&this.hass&&this._config&&(this._features=function(t,e){if(!t||!e||!e.entity)return{climate:void 0,deviceId:void 0,hvacModes:[],quickToggles:[],fan:{source:null},swing:{source:null},preset:{source:null},sensors:[],extraSwitches:[]};const i=t.states||{},s=t.entities||{},n=i[e.entity],r=s[e.entity],o=r?.device_id,a=o?Object.values(s).filter(t=>t&&t.device_id===o):[],c=(t,e)=>{const i=a.find(i=>{const s=i.entity_id;return!(!s||(n=s,n.split(".")[0]!==t))&&(i.translation_key===e||s.endsWith(`_${e}`));var n});return i&&i.entity_id},l=e.features||{},h=n&&n.attributes||{},d=!1===l.hvac_modes?[]:h.hvac_modes||[],u=t=>(t||[]).map(t=>{const e=c("switch",t);return e&&i[e]?{key:t,entityId:e,isOn:(s=i[e],"on"===s?.state)}:null;var s}).filter(Boolean),p=u(l.quick_toggles),m=u(l.extra_switches);let g={source:null};const _=l.fan??"auto";if("hidden"!==_){const t="number"===_||"auto"===_;if(("climate"===_||"auto"===_)&&Array.isArray(h.fan_modes)&&h.fan_modes.length)g={source:"climate",entityId:e.entity,modes:h.fan_modes,current:h.fan_mode};else if(t){const t=c("number","fan_speed"),e=t&&i[t];e&&(g={source:"number",entityId:t,min:Number(e.attributes?.min??1),max:Number(e.attributes?.max??100),step:Number(e.attributes?.step??1),current:Number(e.state)})}}let f={source:null};const v=l.swing??"auto";if("hidden"!==v){const t="switches"===v||"auto"===v;if(("climate"===v||"auto"===v)&&Array.isArray(h.swing_modes)&&h.swing_modes.length)f={source:"climate",entityId:e.entity,modes:h.swing_modes,current:h.swing_mode};else if(t){const t=u($t),e=yt.map(t=>{const e=c("select",t),s=e&&i[e];return s?{key:t,entityId:e,options:s.attributes?.options||[],current:s.state}:null}).filter(Boolean);(t.length||e.length)&&(f={source:"switches",switches:t,selects:e})}}let $={source:null};const y=l.preset??"auto";if("hidden"!==y){const t="switches"===y||"auto"===y;if(("climate"===y||"auto"===y)&&Array.isArray(h.preset_modes)&&h.preset_modes.length)$={source:"climate",entityId:e.entity,modes:h.preset_modes,current:h.preset_mode};else if(t){const t=u(bt);t.length&&($={source:"switches",switches:t})}}const b=(l.sensors||[]).map(t=>{const e=c("sensor",t);return e&&i[e]?{key:t,entityId:e,stateObj:i[e]}:null}).filter(Boolean);return{climate:n,deviceId:o,hvacModes:d,quickToggles:p,fan:g,swing:f,preset:$,sensors:b,extraSwitches:m}}(this.hass,this._config))}get _climate(){return this._features?.climate}get _unit(){return this.hass?.config?.unit_system?.temperature||"°C"}_fireMoreInfo(t){this.dispatchEvent(new CustomEvent("hass-more-info",{detail:{entityId:t},bubbles:!0,composed:!0}))}_toggleRow(t){this._open={...this._open,[t]:!this._open[t]}}_findSwitch(t,e){const i=this._features?.[t];return(i?.switches||[]).find(t=>t.entityId===e)}_onTargetChanged(t){var e,i,s;e=this.hass,i=this._config.entity,s=t.detail.value,e.callService("climate","set_temperature",{entity_id:i,temperature:s})}_onModeChanged(t){var e,i,s;e=this.hass,i=this._config.entity,s=t.detail.mode,e.callService("climate","set_hvac_mode",{entity_id:i,hvac_mode:s})}_onToggleChanged(t){Ot(this.hass,t.detail.entityId,t.detail.on)}_applyOption(t,e){const i=this._config.entity,s=e.indexOf(":"),n=e.slice(0,s),r=e.slice(s+1);if("mode"===n)"fan"===t?function(t,e,i){t.callService("climate","set_fan_mode",{entity_id:e,fan_mode:i})}(this.hass,i,r):"swing"===t?function(t,e,i){t.callService("climate","set_swing_mode",{entity_id:e,swing_mode:i})}(this.hass,i,r):"preset"===t&&function(t,e,i){t.callService("climate","set_preset_mode",{entity_id:e,preset_mode:i})}(this.hass,i,r);else if("switch"===n){const e=this._findSwitch(t,r);Ot(this.hass,r,!(e&&e.isOn))}else if("select"===n){const t=r.indexOf(":"),e=r.slice(0,t),i=r.slice(t+1);!function(t,e,i){t.callService("select","select_option",{entity_id:e,option:i})}(this.hass,e,i)}else"number"===n&&function(t,e,i){t.callService("number","set_value",{entity_id:e,value:i})}(this.hass,this._features.fan.entityId,Number(r))}_numberSteps(t){const e=[t.min,25,50,75,t.max].map(t=>Math.round(t)).filter(e=>e>=t.min&&e<=t.max);return[...new Set(e)].sort((t,e)=>t-e)}_buildFan(){const t=this._features?.fan;return t&&null!==t.source?"climate"===t.source?{icon:"mdi:fan",title:Mt(this.hass,"fan"),currentLabel:Ct(this.hass,this._climate,"fan_mode"),options:(t.modes||[]).map(e=>({value:`mode:${e}`,label:kt(e),selected:e===t.current}))}:{icon:"mdi:fan",title:Mt(this.hass,"fan"),currentLabel:`${t.current}`,options:this._numberSteps(t).map(e=>({value:`number:${e}`,label:`${e}`,selected:Number(e)===Number(t.current)}))}:null}_buildSwing(){const t=this._features?.swing;if(!t||null===t.source)return null;if("climate"===t.source)return{icon:"mdi:arrow-oscillating",title:Mt(this.hass,"swing"),currentLabel:Ct(this.hass,this._climate,"swing_mode"),options:(t.modes||[]).map(e=>({value:`mode:${e}`,label:kt(e),selected:e===t.current}))};const e=[];for(const i of t.switches||[])e.push({value:`switch:${i.entityId}`,label:kt(i.key),selected:i.isOn});for(const i of t.selects||[])for(const t of i.options||[])e.push({value:`select:${i.entityId}:${t}`,label:`${kt(i.key)}: ${kt(t)}`,selected:t===i.current});return{icon:"mdi:arrow-oscillating",title:Mt(this.hass,"swing"),currentLabel:"",options:e}}_buildPreset(){const t=this._features?.preset;return t&&null!==t.source?"climate"===t.source?{icon:"mdi:star",title:Mt(this.hass,"preset"),currentLabel:Ct(this.hass,this._climate,"preset_mode"),options:(t.modes||[]).map(e=>({value:`mode:${e}`,label:kt(e),selected:e===t.current}))}:{icon:"mdi:star",title:Mt(this.hass,"preset"),currentLabel:"",options:(t.switches||[]).map(t=>({value:`switch:${t.entityId}`,label:kt(t.key),selected:t.isOn}))}:null}_renderRow(t,e){return e?L`
+      <mt-collapsible-row
+        .icon=${e.icon}
+        .title=${e.title}
+        .currentLabel=${e.currentLabel}
+        .options=${e.options}
+        .open=${this._open[t]}
+        @toggle-open=${()=>this._toggleRow(t)}
+        @option-selected=${e=>this._applyOption(t,e.detail.value)}
+      ></mt-collapsible-row>
+    `:""}render(){if(!this._config)return L``;const t=this._climate;if(!this.hass||!t)return L`<ha-card
+        ><div class="warning">${Mt(this.hass,"error.no_entity")}</div></ha-card
+      >`;const e=t.attributes||{},i=t.state,s=Et(i),n=this._config.name||e.friendly_name||this._config.entity,r=null!=e.min_temp?Number(e.min_temp):16,o=null!=e.max_temp?Number(e.max_temp):30,a=this._config.dial.step,c=this._features;return L`
+      <ha-card style="--mt-state-color:${s}">
+        <div class="header">
+          <span class="name">${n}</span>
+          <button
+            class="icon-button"
+            aria-label="more info"
+            @click=${()=>this._fireMoreInfo(this._config.entity)}
+          >
+            <ha-icon icon="mdi:dots-vertical"></ha-icon>
+          </button>
+        </div>
+
+        <mt-dial
+          .mode=${i}
+          .value=${e.temperature}
+          .current=${this._config.show_current_as_secondary?e.current_temperature:void 0}
+          .min=${r}
+          .max=${o}
+          .step=${a}
+          .draggable=${this._config.dial.draggable}
+          .unit=${this._unit}
+          .label=${St(this.hass,t)}
+          @value-changed=${this._onTargetChanged}
+        ></mt-dial>
+
+        ${!1!==this._config.features.hvac_modes&&c.hvacModes.length?L`<mt-mode-chips
+              .hass=${this.hass}
+              .hvacModes=${c.hvacModes}
+              .active=${i}
+              @hvac-mode-changed=${this._onModeChanged}
+            ></mt-mode-chips>`:""}
+
+        ${c.quickToggles.length?L`<mt-toggle-chips
+              .hass=${this.hass}
+              .toggles=${c.quickToggles}
+              @toggle-changed=${this._onToggleChanged}
+            ></mt-toggle-chips>`:""}
+
+        ${c.fan.source||c.swing.source||c.preset.source?L`<div class="divider"></div>`:""}
+
+        <div class="controls">
+          ${this._renderRow("fan",this._buildFan())}
+          ${this._renderRow("swing",this._buildSwing())}
+          ${this._renderRow("preset",this._buildPreset())}
+        </div>
+
+        ${c.sensors.length?L`<div class="divider"></div>
+              <mt-sensor-chips
+                .hass=${this.hass}
+                .sensors=${c.sensors}
+                @more-info=${t=>this._fireMoreInfo(t.detail.entityId)}
+              ></mt-sensor-chips>`:""}
+      </ha-card>
+    `}}customElements.get(ct)||customElements.define(ct,Ft),window.customCards=window.customCards||[],window.customCards.some(t=>t.type===ct)||window.customCards.push({type:ct,name:"Midea Thermostat Card",description:"Modern Mushroom-style thermostat card for Midea A/C (midea_ac_lan).",preview:!0}),console.info("%c MIDEA-THERMOSTAT-CARD %c v0.1.0 ","color: white; background: #03a9f4; font-weight: 700;","color: #03a9f4; background: white; font-weight: 700;");export{Ft as MideaThermostatCard};

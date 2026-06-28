@@ -1,0 +1,19 @@
+{
+  "fan": "Fan",
+  "swing": "Swing",
+  "preset": "Preset",
+  "sensors": "Sensors",
+  "current": "Currently",
+  "off": "Off",
+  "editor.entity": "Entity (climate)",
+  "editor.name": "Name",
+  "editor.icon": "Icon",
+  "editor.show_current": "Show current temperature",
+  "editor.quick_toggles": "Quick toggles",
+  "editor.fan": "Fan control",
+  "editor.swing": "Swing control",
+  "editor.preset": "Preset control",
+  "editor.sensors": "Sensors (footer)",
+  "editor.extra_switches": "Extra switches",
+  "error.no_entity": "Define a climate entity"
+}

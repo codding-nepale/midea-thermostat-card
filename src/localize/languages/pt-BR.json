@@ -1,0 +1,19 @@
+{
+  "fan": "Ventilador",
+  "swing": "Oscilação",
+  "preset": "Predefinição",
+  "sensors": "Sensores",
+  "current": "Atualmente",
+  "off": "Desligado",
+  "editor.entity": "Entidade (climate)",
+  "editor.name": "Nome",
+  "editor.icon": "Ícone",
+  "editor.show_current": "Mostrar temperatura atual",
+  "editor.quick_toggles": "Alternadores rápidos",
+  "editor.fan": "Controle do ventilador",
+  "editor.swing": "Controle de oscilação",
+  "editor.preset": "Controle de predefinição",
+  "editor.sensors": "Sensores (rodapé)",
+  "editor.extra_switches": "Interruptores extras",
+  "error.no_entity": "Defina uma entidade climate"
+}

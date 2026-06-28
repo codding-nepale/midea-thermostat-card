@@ -1,0 +1,19 @@
+{
+  "fan": "Ventilateur",
+  "swing": "Oscillation",
+  "preset": "Préréglage",
+  "sensors": "Capteurs",
+  "current": "Actuellement",
+  "off": "Désactivé",
+  "editor.entity": "Entité (climate)",
+  "editor.name": "Nom",
+  "editor.icon": "Icône",
+  "editor.show_current": "Afficher la température actuelle",
+  "editor.quick_toggles": "Bascules rapides",
+  "editor.fan": "Contrôle ventilateur",
+  "editor.swing": "Contrôle oscillation",
+  "editor.preset": "Contrôle préréglage",
+  "editor.sensors": "Capteurs (pied de carte)",
+  "editor.extra_switches": "Interrupteurs supplémentaires",
+  "error.no_entity": "Définissez une entité climate"
+}
